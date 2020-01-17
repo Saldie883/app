@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <h1>№1</h1>
+        <h3>Введіть дату у форматі рррр-мм-дд</h3>
+        <input id="firsttask" type="text" onchange="dayOfTheWeek()">
+        <h3>День тижня:</h3>
+        <p id="firstanswer"></p>
+        <br>
+        <h1>№2</h1>
+        <h3>Введіть дату дня народження</h3>
+        <input id="secondtask" type="text" onchange="getZodiac()">
+        <h3>Знак зодіаку:</h3>
+        <p id="secondanswer"></p>
+        <br>
+        <h1>№3</h1>
+        <h3>Введіть дату</h3>
+        <input id="thirdtask" type="text" onchange="getAnimal()">
+        <h3>Тварина за східним календарем:</h3>
+        <p id="thirdanswer"></p>
+    </center>
+    <script>
+        const dayOfTheWeek = () => {
+            let days = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця', 'Субота'];
+            let date = new Date(Date.parse(document.querySelector("#firsttask").value));
+            document.querySelector("#firstanswer").innerHTML = days[date.getDay()];
+        }
+        const getZodiac = () => {
+            let zodiac = ['Козерог', 'Стрілець', 'Риби', 'Овен', 'Тілець', 'Близнюки', 'Рак', 'Лев',
+                'Діва', 'Ваги', 'Скорпіон', 'Стрілець', 'Козерог'
+            ];
+            let last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
+            let date = new Date(Date.parse(document.querySelector("#secondtask").value));
+            document.querySelector("#secondanswer").innerHTML = (date.getDate() > last_day[date.getMonth()]) ?
+                zodiac[date.getMonth() * 1 + 1] : zodiac[date.getMonth()];
+        }
+        const getAnimal = () => {
+            let date = new Date(Date.parse(document.querySelector("#thirdtask").value));
+            let animals = ['пацюк', 'корова', 'тигр', 'заєць', 'дракон', 'змія', 'кінь', 'вівця', 'мавпа', 'курка',
+                'собака', 'свиня'
+            ];
+            let colors = ['зелений', 'червоний', 'жовтий', 'білий', 'чорний'];
+            let colorIndex = Math.floor((date.getFullYear() - 1984) / 12);
+            let animalIndex = Math.floor((date.getFullYear() - 1984) - 12 * colorIndex);
+            console.log(animals[animalIndex])
+            document.querySelector("#thirdanswer").innerHTML = `${colors[colorIndex]} ${animals[animalIndex]}`;
+        }
+    </script>
+</body>
+
+</html>
