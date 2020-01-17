@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "eslint .",
-    "start": "node index.js"
+    "lint": "eslint .",
+    "test": "node index.js"
   },
   "author": "",
   "license": "MIT",
